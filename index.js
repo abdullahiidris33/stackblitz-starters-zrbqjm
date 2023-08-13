@@ -8,14 +8,18 @@ const PORT = 3000;
 
 // Sample user data (usually stored in a database)
 const users = [
-  { id: 1, username: 'user1', password: '$2b$10$3tKXuIW7AKGKJo5X1cq2QuG.AjJ32j3M9fwEpoj3MW4vbR1Ek4xCa' } // hashed password: "password"
+  {
+    id: 1,
+    username: 'user1',
+    password: '$2b$10$3tKXuIW7AKGKJo5X1cq2QuG.AjJ32j3M9fwEpoj3MW4vbR1Ek4xCa',
+  }, // hashed password: "password"
 ];
 
 app.use(express.json());
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = users.find(user => user.username === username);
+  const user = users.find((user) => user.username === username);
 
   if (!user) {
     return res.status(404).send('User not found');
@@ -35,4 +39,3 @@ app.post('/login', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
